@@ -158,7 +158,7 @@ CI 跑 Python 3.10–3.13，见上方徽章。
 
 ## 作者
 
-罗盛斓 · wushiyi105@gmail.com · [@wushiyi105-jpg](https://github.com/wushiyi105-jpg)
+shiyi · wushiyi105@gmail.com · [@wushiyi105-jpg](https://github.com/wushiyi105-jpg)
 
 ## License
 
