@@ -84,6 +84,13 @@ python -m yingda serve          # http://127.0.0.1:8767
 
 Inbox on the left, full ticket in the middle, draft and judgement reason on the right. "Rerun" walks the pipeline again; "escalate" leaves a record.
 
+Run in Docker (the container uses the default port 8767):
+
+```bash
+docker build -t yingda .
+docker run -p 8767:8767 yingda
+```
+
 ## Command reference
 
 | Command | What it does |
@@ -133,6 +140,46 @@ Same batch again: 4 became 3 `drafted` + 1 `escalated`. Ticket 3 still escalates
 That is the behaviour I wanted: **every ticket it stops, it can explain why.**
 
 I also fixed something small: `stats` only counted `new / replied / escalated`, the `drafted` bucket did not exist, so 3 drafts vanished from the stats and looked like lost tickets.
+
+## 🤔 Why not just ask a general LLM
+
+A general model will happily write a support reply. Yingda adds the three things it cannot:
+
+1. **It decides whether the reply may go out** — after drafting, it judges "safe to send" versus "a human must take over": every policy cited must be findable in the knowledge base, otherwise it escalates. A chat model always thinks its draft is fine.
+2. **The basis can be checked** — triage result, matched knowledge-base passages and each citation in the draft are listed, so a person can see which document a sentence came from instead of trusting a feeling.
+3. **Tickets and knowledge stay local** — incoming mail, ticket states and knowledge documents sit on this machine; a model call sends the current message and matched passages only.
+4. **Structured output** — category, priority, sentiment, draft and the reason for the verdict are fixed fields you can tabulate and chart; a chat reply is one block of text with no triage board.
+
+## 🎯 Use cases
+
+- **A support lead triaging a queue**: incoming messages sorted by category and priority, the safe ones sent first, the uncertain ones left for a human, with the order visible at a glance.
+- **A small team without a ticket system**: three to five people answering support mail can paste a message in and get a draft with its sources, instead of each person re-reading policy.
+- **Training a new hire**: let it draft alongside, then compare against the knowledge-base passages to see which policy was missed — steadier than reading the onboarding docs once.
+
+## 🗺 Roadmap
+
+- **Ticket state transitions**: add pending / replied / escalated / closed with a record of each change.
+- **Similar-ticket retrieval**: surface how the same question was answered last time.
+- **Knowledge gap stats**: count questions that hit nothing, and use that to decide which documents to write.
+- **Tone per brand**: the same policy in different voices per business line, configured rather than hand-edited.
+- **Weekly export**: triage volume, auto-send rate and escalation reasons as Markdown.
+
+## ❓ FAQ
+
+**Where do I get an API key?**
+The project ships without one. It talks to DeepSeek (`https://api.deepseek.com`) by default — set `LLM_API_KEY`. Any OpenAI-compatible endpoint works.
+
+**Where is data stored, and is it uploaded?**
+Tickets, knowledge base and verdict records live in local SQLite (default `data/yingda.db`); a model call sends the current message and matched passages.
+
+**Does it work without a key?**
+You can record tickets and browse the knowledge base, but triage and drafting need a model; offline it will not invent a reply.
+
+**How do I switch models?**
+Change `LLM_BASE_URL`, `LLM_MODEL` and `LLM_API_KEY` as in `.env.example`; the judgement logic is unchanged.
+
+**Why was this one escalated?**
+The draft cited a policy that cannot be found in the knowledge base, or the message involves refunds or liability that an automatic reply should not settle. The reason is written on the ticket.
 
 ## Layout
 
