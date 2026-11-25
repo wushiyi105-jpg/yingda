@@ -1,5 +1,7 @@
 # 应答 · Yingda
 
+[![test](https://github.com/wushiyi105-jpg/yingda/workflows/test/badge.svg)](https://github.com/wushiyi105-jpg/yingda/actions) [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)]() [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+
 [![test](https://github.com/wushiyi105-jpg/yingda/actions/workflows/test.yml/badge.svg)](https://github.com/wushiyi105-jpg/yingda/actions/workflows/test.yml)
 
 一个客服工单的分诊台。客户来信进来，它先分类、查知识库、写一份草稿，然后自己判断：这份草稿能不能直接发出去，还是必须有人接。

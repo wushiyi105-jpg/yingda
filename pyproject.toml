@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "yingda"
+version = "0.1.0"
+description = "客服工单分诊、起草回复、判断该不该转人工，分三次独立调用模型"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+
+[project.scripts]
+yingda = "yingda.cli:main"
+
+[tool.setuptools]
+packages = ["yingda"]
