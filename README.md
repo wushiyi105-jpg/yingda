@@ -8,7 +8,7 @@
 
 我做的第 7 个东西。前面几个都是"帮我干一件事"，这个反过来——它大部分时候在拦自己。
 
-![demo](assets/demo.gif)
+![示例](assets/demo.gif)
 
 ## 为什么不是全自动
 
@@ -149,7 +149,7 @@ yingda/
 │   └── web.py      http.server 收件箱页面 + JSON 接口
 ├── samples/        2 篇知识库、4 张工单（含 1 个 .eml）
 ├── tests/          36 个离线单测
-├── scripts/        生成演示 GIF（开发期用，需 Pillow）
+├── scripts/        生成示例 GIF（开发期用，需 Pillow）
 └── assets/demo.gif
 ```
 

@@ -8,7 +8,7 @@ A triage desk for support tickets. A customer email comes in; it classifies it, 
 
 The seventh thing I built. The earlier ones were "do a task for me"; this one is the opposite — most of the time it is holding itself back.
 
-![demo](assets/demo.gif)
+![usage](assets/demo.gif)
 
 ## Why not fully automatic
 
@@ -149,7 +149,7 @@ yingda/
 │   └── web.py      http.server inbox page + JSON endpoints
 ├── samples/        2 knowledge base docs, 4 tickets (one .eml)
 ├── tests/          36 offline unit tests
-├── scripts/        demo GIF generator (dev only, needs Pillow)
+├── scripts/        usage GIF generator (dev only, needs Pillow)
 └── assets/demo.gif
 ```
 
