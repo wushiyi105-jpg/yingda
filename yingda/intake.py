@@ -6,9 +6,9 @@
 from __future__ import annotations
 
 import email
-from email import policy
 import os
 import re
+from email import policy
 
 from .text import clean_text, strip_html
 

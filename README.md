@@ -1,6 +1,6 @@
 # 应答 · Yingda
 
-[![test](https://github.com/wushiyi105-jpg/yingda/workflows/test/badge.svg)](https://github.com/wushiyi105-jpg/yingda/actions) [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)]() [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![test](https://github.com/wushiyi105-jpg/yingda/workflows/test/badge.svg)](https://github.com/wushiyi105-jpg/yingda/actions) [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)]() [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE) [![codecov](https://codecov.io/gh/wushiyi105-jpg/yingda/branch/main/graph/badge.svg)](https://codecov.io/gh/wushiyi105-jpg/yingda)
 
 [![test](https://github.com/wushiyi105-jpg/yingda/actions/workflows/test.yml/badge.svg)](https://github.com/wushiyi105-jpg/yingda/actions/workflows/test.yml)
 
@@ -31,6 +31,21 @@
 - `escalated`：转人工，附上转的理由、还缺什么信息、该给哪个组。
 
 没有任何一条路会自动发出去。`send` 这个命令是人按的。
+
+## 数据流
+
+一条数据在这几个模块之间怎么走：
+
+```mermaid
+flowchart LR
+    A[工单全文] --> B[intake.py<br/>读入 · 切段]
+    B --> C[bm25.py<br/>知识库命中]
+    C --> D[pipeline.py<br/>第一次调用：分诊]
+    D --> E[pipeline.py<br/>第二次调用：起草回复]
+    E --> F{核验<br/>草稿里的政策有没有出处}
+    F --> G[pipeline.py<br/>第三次调用：可否直发]
+    G --> H[store.py → cli.py / web.py]
+```
 
 ## 快速开始
 

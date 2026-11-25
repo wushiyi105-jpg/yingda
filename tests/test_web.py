@@ -8,7 +8,6 @@ import urllib.request
 from unittest import mock
 
 from yingda import store
-from yingda.pipeline import process as run_pipeline
 from yingda.web import make_server
 
 TRIAGE_JSON = '{"category":"发票","priority":"P2","sentiment":"neutral","summary":"改发票抬头"}'

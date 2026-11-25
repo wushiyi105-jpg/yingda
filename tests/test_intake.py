@@ -2,7 +2,13 @@ import os
 import tempfile
 import unittest
 
-from yingda.intake import IntakeError, from_pasted, looks_like_email, read_eml, read_text_ticket
+from yingda.intake import (
+    IntakeError,
+    from_pasted,
+    looks_like_email,
+    read_eml,
+    read_text_ticket,
+)
 
 EML = """From: 林小雨 <linxy@example.com>
 To: support@example.com
