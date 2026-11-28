@@ -19,7 +19,7 @@ PAGE = """<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>应答 · 客服工单</title>
+<title>应答 · 这单该谁接</title>
 <style>
   :root { --ink:#1b1f24; --muted:#6b7280; --line:#e6e8eb; --bg:#f6f7f9; --accent:#275d8a; }
   * { box-sizing:border-box; }
@@ -57,10 +57,79 @@ PAGE = """<!doctype html>
   .kb { background:#f8fafb; border-left:3px solid #9dbcd6; padding:8px 12px; margin-bottom:6px; font-size:13px; }
   textarea { width:100%; font:inherit; font-size:13px; padding:8px; border:1px solid var(--line); border-radius:8px; }
   #hint { color:var(--muted); font-size:12px; }
+
+:root{--maxw:1080px;--bg:#f4f5f3;--card:#ffffff;--ink:#1b2024;--text:#1b2024;--dim:#6b7378;--line:#d7dcda;--accent:#2f5d7c;--muted:#6b7378}
+.wrap{max-width:1080px}
+body{background:#f4f5f3;color:#1b2024;font-family:"PingFang SC","Microsoft YaHei",sans-serif}
+h1{color:#1b2024}
+header{max-width:1080px;margin:0 auto}
+input,textarea,select{background:#fff;color:#1b2024;border-color:#d7dcda;border-radius:2px}
+button:not(.ghost):not(.tab){background:#2f5d7c;color:#fff;border-radius:2px}
+button.ghost{background:transparent!important;color:#2f5d7c!important;border:1px solid #d7dcda!important}
+h2,h3{color:#2f5d7c}
+pre{background:#fafaf6;color:#1b2024;border-color:#d7dcda}
+.item,.card{border-color:#d7dcda;background:#ffffff}
+.k,.empty,.hint{color:#6b7378}
+
+h1{font-size:clamp(31px,5vw,39px);line-height:1.26}
+.prod{display:block;font-size:11px;line-height:1.4;letter-spacing:.18em;font-weight:650;margin-bottom:8px;opacity:.72}
+.lede,.sub{max-width:62ch;line-height:1.75}
+.route{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin:16px auto 20px;border:1px solid var(--line);background:var(--line);max-width:var(--maxw)}
+.route span{padding:11px 13px;background:var(--card);font-size:12px;line-height:1.5}
+.route b{display:block;font-size:10px;letter-spacing:.1em;margin-bottom:3px;opacity:.66}
+button{min-height:46px}
+input,select{min-height:44px}
+pre{white-space:pre-wrap}
+@media(max-width:680px){
+  .wrap{padding:20px 16px 56px}
+  .route{grid-template-columns:1fr}
+  h1{font-size:30px!important}
+  .row>div{min-width:100%!important}
+  button{width:100%}
+}
+
+body{background:#f4f5f3;color:#1b2024}
+header{display:block!important;max-width:1080px;margin:0 auto;padding:24px 20px 0;background:transparent;border:0}
+header h1{color:#1b2024;font-size:38px;line-height:1.24;letter-spacing:-.02em}
+header span{display:block;color:#6b7378;font-size:14px;margin-top:6px}
+main{max-width:1080px;margin:0 auto;background:#fff;border-left:1px solid #d7dcda;border-right:1px solid #d7dcda;grid-template-columns:360px 1fr;min-height:calc(100vh - 150px)}
+aside{background:#f9faf8;border-right:1px solid #d7dcda}
+section{background:#fff}
+input,textarea,select{background:#fff;color:#1b2024;border-color:#d3d9d7;border-radius:2px}
+input:focus,textarea:focus,select:focus{border-color:#2f5d7c;box-shadow:0 0 0 2px #dbe4ea}
+button{background:#2f5d7c;color:#fff;border-radius:2px}
+button:hover{background:#254b64}
+.item,.card{border-color:#d7dcda;background:#fff}
+.amber,.warn{border-left:3px solid #d08a2f}
+h2{color:#2f5d7c}
+.k,.empty{color:#6b7378}
+
+
+/* mobile-32 */
+input[type=text],input[type=number],input[type=email]{background:#fff;color:#1b2024;border-color:#d7dcda}
+
+@media(max-width:760px){
+  main{grid-template-columns:1fr!important}
+  aside{border-right:0!important;border-bottom:1px solid #d7dcda;width:auto!important}
+  section{padding:16px!important}
+  .row{flex-wrap:wrap!important}
+  .row>div{min-width:100%!important}
+  h1{font-size:30px!important}
+  .route{grid-template-columns:1fr!important}
+  button{min-height:48px}
+  pre{overflow-x:auto}
+}
+
+/* mobile-height */
+@media(max-width:760px){main{min-height:auto!important}aside{min-height:0!important}}
 </style>
 </head>
 <body>
-<header><h1>应答</h1><span>分类 → 查知识库 → 起草 → 判断要不要转人工</span></header>
+<header><h1><span class="prod">应答</span>这单，该谁接</h1><span>分类 → 查知识库 → 起草 → 判断要不要转人工</span>
+    <p class="lede">给小客服团队的可交接分诊台：按紧迫度、业务线和待办分队列，草稿逐条引用知识库；退款承诺、权限或缺失依据自动转人工。</p>
+  </header>
+  <div class="route" aria-label="任务步骤"><span><b>01</b>工单入队</span><span><b>02</b>查库起草</span><span><b>03</b>转人工交接</span></div>
+
 <main>
 <aside>
   <div class="filters">
